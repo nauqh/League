@@ -47,7 +47,7 @@ st.image("img/wallpaper.jpg")
 regions = {
     "EUW": "EUW1",
     "NA": "NA1",
-    "OCE": "OCE",
+    "OCE": "OC1",
     "KR": "KR",
     "VN": "VN2"
 }
