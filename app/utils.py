@@ -86,6 +86,18 @@ def get_total_kills(match_data, teamid):
     return kills
 
 
+def get_recent_played_with(match_data, puuid, teamId):
+    """
+    Get data of recent played with summoner
+    """
+    play_with = []
+    participants = match_data['info']['participants']
+    for participant in participants:
+        if participant['puuid'] != puuid and participant['teamId'] == teamId:
+            play_with.append(participant['summonerName'])
+    return play_with
+
+
 def is_remake(match_data):
     participants = match_data['info']['participants']
     for participant in participants:
@@ -110,7 +122,8 @@ def gather_all_data(puuid, match_ids, mass_region, api_key):
         'cs': [],
         'time': [],
         'first_blood': [],
-        'team_kills': []
+        'team_kills': [],
+        'play_with': []
     }
 
     if not match_ids:
@@ -122,6 +135,8 @@ def gather_all_data(puuid, match_ids, mass_region, api_key):
         match_data = get_match_data(match_id, mass_region, api_key)
         player_data = find_player_data(match_data, puuid)
         total_kills = get_total_kills(match_data, player_data['teamId'])
+        play_with = get_recent_played_with(
+            match_data, puuid, player_data['teamId'])
 
         # assign the variables we're interested in
         champion = player_data['championName']
@@ -156,6 +171,7 @@ def gather_all_data(puuid, match_ids, mass_region, api_key):
         data['time'].append(time)
         data['first_blood'].append(first_blood)
         data['team_kills'].append(total_kills)
+        data['play_with'].append(play_with)
 
     df = pd.DataFrame(data)
     st.success(f"Extracted {len(df)} matches from your league!", icon="✅")
