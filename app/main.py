@@ -11,7 +11,7 @@ key = os.getenv('KEY')
 
 st.set_page_config(
     page_title="League of Legends",
-    page_icon="🎮",
+    page_icon="🌨️",
     layout="wide")
 
 # TODO: Sidebar
