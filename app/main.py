@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-key = os.getenv('KEY')
+key = 'RGAPI-c25ed1a3-331a-4da5-accc-bcb2ab163c43'
 
 
 st.set_page_config(
