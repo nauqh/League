@@ -1,12 +1,8 @@
 from utils import *
 from graph import *
 import streamlit as st
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-key = 'RGAPI-c25ed1a3-331a-4da5-accc-bcb2ab163c43'
+key = st.secrets["KEY"]
 
 
 st.set_page_config(
