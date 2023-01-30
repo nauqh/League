@@ -23,6 +23,8 @@ with st.sidebar:
         "A rating system that measures users performance within a game by combining stats related to role, laning phase, kills / deaths / damage / wards / damage to objectives etc")
     st.markdown(
         "Status: `Beta`")
+    st.markdown(
+        "Sever shutdown on: Mon, Jan 30th, 2023 @ 1:25am (PT)")
     st.markdown("##")
 
 # TODO: Main
