@@ -153,3 +153,10 @@ if run:
         st.header("Most played champion")
         graph = champexp_graph(champDf, df)
         st.plotly_chart(graph, use_container_width=True)
+
+    # TODO: Recent played with
+    st.write("##")
+    with st.container():
+        st.header("Recently played with")
+        play_with = get_players_df(df)
+        st.table(play_with)

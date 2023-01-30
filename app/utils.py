@@ -2,6 +2,7 @@ import requests
 import time
 from time import strftime, gmtime
 import pandas as pd
+import numpy as np
 from stqdm import stqdm
 import streamlit as st
 
@@ -244,3 +245,18 @@ def champ_df(df):
 
 def get_champ_pool(champ_df):
     return champ_df.sort_values('count', ascending=False)[:5]['champion'].to_list()
+
+
+def clean(line):
+    return [s.strip(" '") for s in line]
+
+
+def get_players_df(df):
+    df['play_with'] = df['play_with'].str.strip(
+        "[]").str.split(',').apply(clean)
+    play_with = df['play_with'].sum()
+
+    values, counts = np.unique(play_with, return_counts=True)
+    zipped = list(zip(values, counts))
+    zipped.sort(key=lambda y: y[1], reverse=True)
+    return pd.DataFrame(zipped[:5], columns=['Summoner', 'Played'])
